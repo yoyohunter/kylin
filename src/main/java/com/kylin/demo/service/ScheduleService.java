@@ -59,7 +59,7 @@ public class ScheduleService {
         return FastJsonUtils.toList(result.getContent(), Jobs.class);
     }
 
-    public String getMessage(String tableName) throws Exception {
+    public String getMessage() throws Exception {
 //        String url = "http://192.168.1.33:7070/kylin/api/cubes";
         String url = "http://10.255.1.117:7070/kylin/api/cubes";
 
@@ -71,39 +71,35 @@ public class ScheduleService {
         List<Cube> cubes = FastJsonUtils.toList(result.getContent(), Cube.class);
 
 
-        List<String> mobels = Lists.newArrayList();
-
-
-        cubes.stream().forEach(it->{
-            if(tableName.equals(it.getModelBo().getFactTable())){
-                mobels.add(it.getModel());
-            }
-        });
-
-        String s = JSON.toJSONString(mobels);
-
-
-        File file =new File("/data/");
-
-
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-
-        fileOutputStream.write(s.getBytes());
-
-        ResourceUtils.getURL("");
-
-        return JSON.toJSONString(mobels);
-
-
+//        List<String> mobels = Lists.newArrayList();
 //
 //
-//        cubes.stream().forEach(item -> {
-//            item.setModelBo(getModle(item.getModel()));
+//        cubes.stream().forEach(it->{
+//            if(tableName.equals(it.getModelBo().getFactTable())){
+//                mobels.add(it.getModel());
+//            }
 //        });
 //
-//        String s = FastJsonUtils.toJSONString(cubes);
+//        String s = JSON.toJSONString(mobels);
 //
-//        return s;
+//
+//        File file =new File("/data/");
+//
+//
+//        FileOutputStream fileOutputStream = new FileOutputStream(file);
+//
+//        fileOutputStream.write(s.getBytes());
+//
+//        ResourceUtils.getURL("");
+//
+//        return JSON.toJSONString(mobels);
+
+
+
+
+        String s = FastJsonUtils.toJSONString(cubes);
+
+        return s;
     }
 
     public Model getModle(String modelName) {
